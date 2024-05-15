@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <title>autoplay video</title><link rel="stylesheet" href="exitpage.html">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
+     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<style>
+    body{
+        background-color: bisque;
+        background-repeat: no-repeat;
+        background-position-x: 100%;
+        background-position-y: 100%;
+        margin: 0;
+        overflow: scroll;
+        background-size: cover;
+    }
+    div.a{
+        width: 850px;
+        height: 850px; 
+        margin-left: 350px;
+        margin-right: 400px;
+        margin-top: 0px;
+        margin-bottom: 100px;
+        border: 20px double blue;
+    }
+    div.a:hover{
+        transform: skewY(20deg);
+    }
+    div.b{
+        float: right;
+    }
+    h1.a {
+        text-shadow: 5px 5px 5px #ad1ca6cd;
+        font-size : 100px;
+    }
+    div.c{
+        width:550px;
+        height:350px;
+        border:30px inset rosybrown;
+        margin: 10px;
+     }
+
+    div.flex-container{
+        display:flex
+    }
+    .flex-container > div{
+        background-color:black;
+        margin: 10px;
+        padding: 20px;
+        font-size: 30px;
+    }
+    div.d{
+        float: left;
+    }
+   p.span{
+    font-family: sans-serif;
+    font-size: 40px;
+   } 
+   span{
+    border:solid 1px;
+   }
+   span.adjust{
+    font-size-adjust: 0.5;
+
+   }
+   #video-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      filter: opacity(30%);
+    }
+
+    
+* { 
+  margin : 0;
+  padding: 0;
+  box-sizing : border-box;
+  font-familly : "Poppins", sans-serif;
+}
+
+
+.container{
+  position : relative;
+  width : 1100px;
+  display : flex;
+  align-items : center;
+  justify-content : center;
+  flex-warp : warp;
+  padding : 30px;  
+}
+
+.container .card {
+  position: relative;
+  max-width : 350px;
+  height : 265px;  
+  background-color : #fff;
+  margin : 30px 10px;
+  padding : 20px 15px;
+  
+  display : flex;
+  flex-direction : column;
+  box-shadow : 0 5px 20px rgba(0,0,0,0.5);
+  transition : 0.3s ease-in-out;
+  border-radius : 15px;
+}
+.container .card:hover {
+  height : 320px;    
+}
+
+
+.container .card .image {
+  position : relative;
+  width : 310px;
+  height : 310px;
+  
+  top : -40%;
+  left: 8px;
+  box-shadow : 0 5px 20px rgba(0,0,0,0.2);
+  z-index : 1;
+}
+
+.container .card .image img {
+  max-width : 100%;
+  border-radius : 15px;
+}
+
+.container .card .content {
+  position : relative;
+  top : -140px;
+  padding : 10px 15px;
+  color : #111;
+  text-align : center;
+  
+  visibility : hidden;
+  opacity : 0;
+  transition : 0.3s ease-in-out;
+    
+}
+
+.container .card:hover .content {
+   margin-top : 30px;
+   visibility : visible;
+   opacity : 1;
+   transition-delay: 0.2s;
+  
+}
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: black; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #b30000; 
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Lato', sans-serif;
+
+  .date {
+    font-size: 24px;
+    font-weight: 500;
+    font-family: 'Lato', sans-serif;
+    &#printDate {
+      color:black;
+    }
+    &#printDay {
+      margin: 0 20px;
+      color:black;
+    }
+    &#printTime {
+      color:black;
+    }
+  }
+}
+ 
+</style>
+    <title>project</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#intro">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" href="#">Features</a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="#apj">A P J ABDUL KALAM</a></li>
+              <li><a class="dropdown-item" href="#education">Early life and education</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              HIGHLIGHTS
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="#achieve">Achievements</a></li>
+              <li><a class="dropdown-item" href="#speaker">A Great Speaker</a></li>
+              <li><a class="dropdown-item" href="#quote">Quotes</a></li>
+            </ul>
+          </li>
+          <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          </form>
+        
+        </ul>
+      </div>
+    </div>
+  </nav>
+    <video id="video-background" autoplay muted loop>
+        <source src="C:\Users\palak\Downloads\WhatsApp Video 2023-11-29 at 23.12.16.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="container1">
+        <div class="date" id="printDate"></div>
+        <div class="date" id="printDay"></div>
+        <div class="date" id="printTime"></div>
+      </div><script>
+        var date = new Date();
+const elementDate = document.getElementById("printDate");
+const elementDay = document.getElementById("printDay");
+const elementTime = document.getElementById("printTime");
+const listOfDays = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday"
+];
+
+function printDate() {
+  var day = date.getDate();
+  var month = date.getMonth();
+  var year = date.getFullYear();
+
+  elementDate.innerHTML = day + " / " + month + " / " + year;
+}
+
+function printDay() {
+  date = new Date();
+  var numberOfDay = date.getDay();
+  var day = listOfDays[numberOfDay];
+  elementDay.innerHTML = day;
+}
+
+function printTime() {
+  date = new Date();
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var seconds = date.getSeconds();
+
+  if (seconds < 10) {
+    seconds = "0" + seconds;
+  }
+  if (minutes < 10) {
+    minutes = "0" + minutes;
+  }
+  if (hours > 12) {
+    hours = hours - 12;
+    elementTime.innerHTML = hours + " : " + minutes + " : " + seconds + "  PM ";
+  } else if (hours < 12) {
+    elementTime.innerHTML = hours + " : " + minutes + " : " + seconds + "  AM ";
+  } else if (hours = 12) {
+    elementTime.innerHTML = hours + " : " + minutes + " : " + seconds + "  PM ";
+  }
+}
+
+setInterval(function() {
+  printTime();
+  printDate();
+  printDay();
+}, 1000);
+      </script>
+    <center><h1 class="a" id="top"> A P J ABDUL KALAM </h1></center><a href="#bottom"> <button>Go To Bottom</button></a>
+    <br>
+    <br><br><br><br><br>
+ <div class="a" ><center><img src="C:\Users\palak\OneDrive\Desktop\project pics\apj7.jpg" height="800px" width="800px"></center></div>
+ <b><u><center><h1 id="intro"> "All Birds find shelter during a rain.<br> 
+    But Eagle avoids rain by flying above the Clouds. <br>Problem are common,but attitude makes the difference!!!"</h1></center></u></b>
+ <br><br><br> <p class="span"><span class="adjust" id="apj">APJ Abdul Kalam</span></p>
+<p style="font-family: monospace; font-size:x-large">Avul Pakir Jainulabdeen Abdul Kalam was an Indian aerospace scientist and statesman who served as the 11th president
+     of India from 2002 to 2007.
+      He was born and raised in Rameswaram, Tamil Nadu and studied physics and aerospace engineering. He spent the next four decades as a 
+      scientist and science administrator, mainly at the Defence Research and Development Organisation (DRDO) and Indian Space Research 
+      Organisation (ISRO) and was intimately involved in India's civilian space programme and military missile development efforts.
+       He thus came to be known as the Missile Man of India for his work on the development of ballistic missile and launch vehicle 
+    technology.He also played a pivotal organisational, technical, and political role in India's Pokhran-II nuclear tests in 1998,
+        the first since the original nuclear test by India in 1974.</p>
+
+    <p style="font-family: monospace; font-size: x-large;">Kalam was elected as the 11th president of India in 2002 with the support of both the ruling Bharatiya Janata Party and the then-
+    opposition Indian National Congress. Widely referred to as the "People's President",he returned to his civilian life of education, 
+    writing and public service after a single term. He was a recipient of several prestigious awards, including the Bharat Ratna, 
+    India's highest civilian honour.
+    
+    While delivering a lecture at the Indian Institute of Management Shillong, Kalam collapsed and died from an apparent cardiac 
+    arrest on 27 July 2015, aged 83.Thousands, including national-level dignitaries, attended the funeral ceremony held in his 
+    hometown of Rameswaram, where he was buried with full state honours.
+   </h4></p><br><br><br><br><br>
+   <p style="font-size:xx-large;"><U><marquee direction="right" bgcolor="yellowgreen" id="education">EARLY LIFE and Education</marquee></U></p>
+   
+    <div>
+    <p >
+      <div class="b">  <img src="C:\Users\palak\OneDrive\Desktop\project pics\apj.webp"
+        style=" height: 350px; width:600px; margin-left:20px;"></div>
+      <p style="font-family: monospace; font-size: x-large;">Avul Pakir Jainulabdeen Abdul Kalam was born on 15 October 1931, to a Tamil Muslim family in the pilgrimage centre 
+        of Rameswaram on Pamban Island, then in the Madras Presidency and now in the State of Tamil Nadu. 
+        His father Jainulabdeen Marakayar was a boat owner and imam of a local mosque his mother Ashiamma was a housewife.
+         His father owned a ferry that took Hindu pilgrims back and forth between Rameswaram and the now uninhabited Dhanushkodi.
+          Kalam was the youngest of four brothers and one sister in his family.
+          His ancestors had been wealthy Marakayar traders and landowners, with numerous properties and large tracts of land. 
+          Marakayar are a Muslim ethnic group found in coastal Tamil Nadu and Sri Lanka who claim descent from Arab traders and local women.
+           The family business had involved trading groceries between the mainland and the island and to and from Sri Lanka, 
+           as well as ferrying pilgrims between the mainland and Pamban. With the opening of the Pamban Bridge to the mainland in 1914,
+            however, the businesses failed and the family fortune and properties were lost by the 1920s, apart from the ancestral home.
+             The family was poverty-stricken by the time Kalam was born. As a young boy he had to sell newspapers to add to the family's 
+             meager income.</p>
+
+      <p style="font-family: monospace; font-size: x-large;">  In his school years, Kalam had average grades but was described as a bright and hardworking student who had a strong desire to learn
+        . He spent hours on his studies, especially Mathematics. After completing his education at the Schwartz Higher Secondary School, 
+        Ramanathapuram, Kalam went on to attend Saint Joseph's College, Tiruchirappalli, then affiliated with the University of Madras, 
+        from where he graduated in physics in 1954.
+        He moved to Madras in 1955 to study aerospace engineering in Madras Institute of Technology.
+        While Kalam was working on a senior class project, the Dean was dissatisfied with his lack of progress 
+        and threatened to revoke his scholarship unless the project was finished within the next three days. 
+        Kalam met the deadline, impressing the Dean, who later said to him, "I was putting you under stress and asking you to meet 
+        a difficult deadline."He narrowly missed achieving his dream of becoming a fighter pilot, 
+        as he placed ninth in qualifiers, and only eight positions were available in the IAF.</p>
+</p></div>
+<br>
+<h1><i>REPRESENTING INDIA as a SCIENTIST</i></h1>
+<center><div class="c"><img src="C:\Users\palak\OneDrive\Desktop\project pics\apj5.jpg" style=" height:300px; width: 500px;"></div></center><br>
+<div><p style="font-family:monospace; font-size: x-large;"> graduating from the Madras Institute of Technology in 1960, Kalam joined the Aeronautical Development Establishment of the Defence 
+    Research and Development Organisation (by Press Information Bureau, Government of India) as a scientist after becoming a member of the 
+    Defence Research & Development Service (DRDS). He started his career by designing a small hovercraft, but remained unconvinced by his 
+    choice of a job at DRDO. Kalam joined the INCOSPAR, working under Vikram Sarabhai, the renowned space scientist. He was interviewed
+     and recruited into ISRO by H. G. S. Murthy, the first Director of Thumba Equatorial Rocket Launching Station (TERLS).</p>
+    <p style="font-family:monospace; font-size:x-large;">In 1963 to 1964, he visited NASA's Langley Research Center in Hampton, Virginia; Goddard Space Flight Center in Greenbelt, 
+        Maryland; and Wallops Flight Facility.Between the 1970s and 1990s, Kalam made an effort to develop the Polar Satellite 
+        Launch Vehicle (PSLV) and SLV-III projects, both of which proved to be successful.</p>
+    <p style="font-family:monospace; font-size:x-large;">Kalam was invited by Raja Ramanna to witness the country's first nuclear test Smiling Buddha as the representative of TBRL, even 
+        though he had not participated in its development. In the 1970s, Kalam also directed two projects, Project Devil and Project
+        Valiant, which sought to develop ballistic missiles from the technology of the successful SLV programme. Despite the 
+        disapproval of the Union Cabinet, Prime Minister Indira Gandhi allotted secret funds for these aerospace projects through
+         her discretionary powers under Kalam's directorship.Kalam played an integral role convincing the Union Cabinet to 
+         conceal the true nature of these classified aerospace projects. His research and educational leadership brought him 
+         great laurels and prestige in the 1980s, which prompted the government to initiate an advanced missile programme under his 
+         directorship. Kalam and Dr V S Arunachalam, metallurgist and scientific adviser to the Defence Minister, worked on the 
+         suggestion by the then Defence Minister, R. Venkataraman on a proposal for simultaneous development of a quiver of missiles 
+         instead of taking planned missiles one after another. R Venkatraman was instrumental in getting the cabinet approval for
+          allocating ₹ 3.88 billion for the mission, named Integrated Guided Missile Development Programme (IGMDP) and appointed Kalam
+           as the chief executive. Kalam played a major part in developing many missiles under the mission including Agni, 
+           an intermediate range ballistic missile and Prithvi, the tactical surface-to-surface missile, although the projects have been
+            criticised for mismanagement and cost and time overruns.</p></div>
+     <p style="font-size:xx-large; ">Presidentship</p>      
+     <div><p style="font-family:monospace; font-size:x-large; ">Kalam served as the 11th president of India, succeeding K. R. Narayanan. He won the 2002 presidential election with an electoral
+        vote of 922,884, surpassing the 107,366 votes won by Lakshmi Sahgal. His term lasted from 25 July 2002, to 25 July 2007.</p>
+       <p style="font-family:monospace; font-size: x-large;">On 10 June 2002, the National Democratic Alliance (NDA) which was in power at the time, expressed that they would nominate Kalam
+            for the post of President, and both the Samajwadi Party and the Nationalist Congress Party backed his candidacy. After
+             the Samajwadi Party announced its support for Kalam, Narayanan chose not to seek a second term in office, leaving the field 
+             clear. Kalam said of the announcement of his candidature:</p>
+           <center><h2><a href="C:\Users\palak\OneDrive\Desktop\project pics\apj6.avif"><p>"I am really overwhelmed. </p>
+             <p> Everywhere both in Internet and in other media, I have been asked for a message.</p>
+             <p >I was thinking what message I can give to the people of the country at this juncture."</p></a></h2></center>
+            <p style="font-size:x-large; font-family: monospace; ">During his term as president, he was affectionately known as the People's President, saying that signing the Office of 
+                Profit Bill was the toughest decision he had taken during his tenure.Kalam was criticised for his inaction in deciding the
+                 fate of 20 out of the 21 mercy petitions submitted to him during his tenure. Article 72 of the Constitution of India
+                  empowers the President of India to grant pardons, and suspend or commute the death sentence of convicts on death row.
+                Kalam acted on only one mercy plea in his five-year tenure as president, rejecting the plea of rapist Dhananjoy Chatterjee,
+                 who was later hanged.Perhaps the most notable plea was from Afzal Guru, a Kashmiri terrorist who was convicted of conspiracy
+             in the December 2001 attack on the Indian Parliament and was sentenced to death by the Supreme Court of India in 2004.
+              While the sentence was scheduled to be carried out on 20 October 2006, the pending action on his mercy plea resulted in him
+               remaining on death row.He also took the controversial decision to impose President's Rule in Bihar in 2005.
+
+                In September 2003, in an interactive session in PGI Chandigarh, Kalam supported the need of Uniform Civil Code in India,
+                 keeping in view the population of the country.
+                
+                At the end of his term, on 20 June 2007, Kalam expressed his willingness to consider a second term in office provided there
+                 was certainty about his victory in the 2007 presidential election.However, two days later, he decided not to contest the Presidential 
+                 election again stating that he wanted to avoid involving Rashtrapati Bhavan from any political processes. He was proposed
+                 by third front named United National Progressive Alliance leader J. Jayalalithaa and coordinator Chandrababu Naidu other leaders
+                  Mulayam Singh Yadav and Om Prakash Chautala, but he did not have the support of the left parties, Shiv Sena and UPA constituents
+                  , to receive a renewed mandate.</p></div>   <div id="layout">
+                    <div></div><br>
+                    <p style="font-size: xx-large;" id="achieve">ACHIEVEMENTS</p>
+                    
+  
+   
+   <marquee direction="right"> <div class="flex-container">
+    <div><img src="C:\Users\palak\OneDrive\Desktop\project pics\apj9.jpg" width="300px"; height="300px;"></div>
+    <div><img src="C:\Users\palak\OneDrive\Desktop\project pics\apj11.jpg" width="300px"; height="300px";></div>
+    <div><img src="C:\Users\palak\OneDrive\Desktop\project pics\apj10.jpeg" width="300px"; height="300px";></div>
+    <div><img src="C:\Users\palak\OneDrive\Desktop\project pics\apj8.webp" width="300px"; height="300px";></div>
+</div> </marquee>  
+<div><p style="font-size:x-large; font-family: monospace;">Kalam received 7 honorary doctorates from 40 universities. The Government of India honoured him with the Padma Bhushan in 1981
+     and the Padma Vibhushan in 1990 for his work with ISRO and DRDO and his role as a scientific advisor to the Government. In 1997, 
+     Kalam received India's highest civilian honour, the Bharat Ratna, for his contribution to the scientific research and modernisation
+      of defence technology in India. In 2008 Kalam was the recipient of Hoover Medal. And in 2013, he was the recipient of the Von
+       Braun Award from the National Space Society "to recognize excellence in the management and leadership of a space-related project".
+</p>
+   <p style="font-size:x-large; font-family: monospace;"> In 2012, Kalam was ranked number 2 in Outlook India's poll of the Greatest Indian.</p>
+    
+  <p style="font-size:x-large; font-family: monospace;">Following his death, Kalam received numerous tributes. The Tamil Nadu state government announced that his birthday, 15 October, 
+  would be observed across the state as "Youth Renaissance Day;" the state government further instituted the "Dr. A. P. J. Abdul Kalam
+   Award", constituting an 8-gram gold medal, a certificate and ₹500,000 (US$6,300). The award will be awarded annually on Independence Day,
+    beginning in 2015, to residents of the state with achievements in promoting scientific growth, the humanities or the welfare of 
+    students.</p>
+    
+  <p style="font-size:x-large; font-family: monospace;"> On the anniversary of Kalam's birth in 2015 the CBSE set topics on his name in the CBSE expression series.</p>
+    
+  <p style="font-size:x-large; font-family: monospace;">  Prime Minister Narendra Modi ceremonially released postage stamps commemorating Kalam at DRDO Bhawan in New Delhi on 15 October 
+    2015, the 84th anniversary of Kalam's birth.
+    
+    Researchers at the NASA's Jet Propulsion Laboratory (JPL) had discovered a new bacterium on the filters of the International Space 
+    Station (ISS) and named it Solibacillus kalamii to honour the late president Dr. A. P. J. Abdul Kalam.</p></div>
+    <ul>
+<li><p style="font-size:x-large; font-family: monospace;">Kerala Technological University, headquartered at Thiruvananthapuram where Kalam lived for years, was renamed to A P J Abdul Kalam
+     Technological University after his death.</p></li>
+<li><p style="font-size:x-large; font-family: monospace;">An agricultural college at Kishanganj, Bihar, was renamed the "Dr. Kalam Agricultural College, Kishanganj" by the Bihar state
+     government on the day of Kalam's funeral. The state government also announced it would name a proposed science city after Kalam.</p></li>
+<li><p style="font-size:x-large; font-family: monospace;">India's First Medical Tech Institute named as Kalam Institute of Health Technology located at Visakhapatnam.</p></li>
+<li> <p style="font-size:x-large; font-family: monospace;">A. P. J. Abdul Kalam Memorial Travancore Institute of Digestive Diseases, a new research institute in Kollam city, Kerala attached
+     to the Travancore Medical College Hospital.</p></li>
+    </ul><br>
+ <p style="font-size: xx-large;" id="speaker"><u>A GREAT SPEAKER</u></p> 
+ <div class="d"><img src="C:\Users\palak\OneDrive\Desktop\project pics\apj4.jpg" style=" margin-top:10px; margin:20px; height: 350px; width:400px;"></div>
+ <div><p style="font-size:x-large; font-family: monospace;"> One of the best speeches of Mr. Kalam was the one he gave in the European Union in the year 2007. emphasized on the runner,
+     Kaniyan Poongunranar’s belief that he was a world citizen and every citizen was his own kith and kin. Mr. Kalam said that where 
+     there is righteousness in the heart, there is beauty in the character.  there is beauty in the character, there is harmony 
+     in the home. When there is harmony in the home, there is order in the nation. When there is order in the nations, there is peace
+      in the world. These heart-touching lines touched the souls of all the EU members present there.</p>
+    <p style="font-size: x-large; font-family: monospace;">In one of his speeches at the Indian Institute of Technology, Madras in 2010, he shared his experience with the 11 million
+         young people he had come across in a decade’s time. He said that every youth wants to be unique and that is YOU. But the world
+          around us is striving every day to make you a common person. Being like everyone else is not at all satisfying in the long run. 
+          People tend to regret that they couldn’t be unique and achieve greater heights in life. Dr Abdul Kalam envisioned before the
+           batch of students the perspective of the ‘Evolution of the unique YOU'.</p>
+        <p style="font-size: x-large; font-family: monospace;">Dr Kalam always insisted the younger generation to work with their full heart towards anything that they wanted to achieve.
+             He said that one might achieve success while having worked with half-heart but bitterness keeps breeding all the time. 
+             He is remembered by the younger generation as one of those leaders who gave them a safer and brighter India coupled with
+              economic and social growth. He believed in the importance of a father, mother, and teacher in the nurturing of a 
+              corruption-free India as these are the people who develop the country’s future.</p></div>
+<br> 
+<h2><b>KALAM </b> as a <b>COMMON MAN</b></h2>
+<div><p style="font-family:monospace; font-size: x-large;"> Namaz and fasting during Ramadan were integral to the life of Kalam, a practising Sunni Muslim.
+    <br>His father, the imam of a
+    mosque in his hometown of Rameswaram, had strictly instilled these Islamic customs in his children. 
+    <br>His father had also impressed upon the young Kalam the value of interfaith respect and dialogue. As Kalam recalled:
+     "Every evening, my father A. P. Jainulabdeen,an imam, Pakshi Lakshmana Sastry, the head priest of the Ramanathaswamy Hindu temple, and a church priest used to sit with hot tea 
+      and discuss the issues concerning the island."
+       Such early exposure convinced Kalam that the answers to India's multitudinous
+       issues lay in "dialogue and cooperation" among the country's religious, social, and political leaders.Moreover, since Kalam 
+       believed that "respect for other faiths" was one of the key cornerstones of Islam, he was fond of saying: "For great men, religion 
+       is a way of making friends; small people make religion a fighting tool."</p>
+    <p style="font-family:monospace; font-size: x-large;">One component of Kalam's widespread popularity among diverse groups in India, and an enduring aspect of his legacy, is the 
+        syncretism he embodied in appreciating various elements of the many spiritual and cultural traditions of India.In addition to his 
+        faith in the Quran and Islamic practice, Kalam was well-versed in Hindu traditions; he learnt Sanskrit, read the Bhagavad Gita
+        and he was a vegetarian. Kalam also enjoyed writing Tamil poetry, playing the veena (an Indian string instrument), and
+         listening to Carnatic devotional music every day. In 2002, in one of his early speeches to Parliament after becoming president,
+          he reiterated his desire for a more united India, stating that "during the last one year I met a number of spiritual leaders of all
+           religions ... and I would like to endeavour to work for bringing about unity of minds among the divergent traditions of our country".
+         Describing Kalam as a unifier of diverse traditions, Congress leader Shashi Tharoor stated, "Kalam was a complete Indian, an 
+         embodiment of the eclecticism of India's heritage of diversity". BJP leader L. K. Advani concurred that Kalam was "the best 
+         exemplar of the Idea of India, one who embodied the best of all the cultural and spiritual traditions that signify India's unity in
+          immense diversity. This was most strikingly evident in the second-to-last book he published, presciently titled Transcendence: My 
+          Spiritual Experiences with Pramukh Swami".</p></div>
+    <br><br>
+    <h2 id="quote">QUOTES</h2>
+        <div class = container>
+          <div class = card>
+            <div class = image>
+              <img href = "#" src = "C:\Users\palak\Downloads\images apj.jpg">
+            </div>
+            <div class = content>
+                <p><b>“You cannot change your FUTURE, you can change your HABITS. And surely your HABITS will change your FUTURE”</b></p>
+                
+                  
+            </div>
+          </div>    
+        </div>
+        <div class = container>
+          <div class = card>
+            <div class = image>
+              <img href = "#" src ="C:\Users\palak\Downloads\piccc.jpg" >
+            </div>
+            <div class = content>
+                <p><b>If you want to shine like a sun, first burn like it.</b></p>
+                
+                  
+            </div>
+          </div>    
+        </div>
+    <h2> AUTO-BIOGRAPHY</h2>      
+    <div><p style="font-family: monospace; font-size: x-large;"><a href="C:\Users\palak\OneDrive\Desktop\Wings_of_Fire_by_A_P_J_Abdul_Kalam_Book_Cover.jpg"> Wings of Fire (1999)</a>, is
+         the autobiography of the Missile Man of India and President of India, Dr. A. P. J. Abdul Kalam.It was written by him and
+          Arun Tiwari.
+        In the autobiography, Kalam examines his early life, effort, hardship, fortitude, luck and chance that eventually led him to lead
+         Indian space research, nuclear and missile programs. Kalam started his career, after graduating from Aerospace engineering at
+          Madras Institute of Technology, at Hindustan Aeronautics Limited and was assigned to build a hovercraft prototype. Later he moved
+           to ISRO and helped establish the Vikram Sarabhai Space Centre and pioneered the first space launch-vehicle program. During the 
+           1990s and early 2000, Kalam moved to the DRDO to lead the Indian nuclear weapons program, with particular successes in
+            thermonuclear weapons development culminating in the operation Smiling Buddha and an ICBM Agni.</p>
+        <p style="font-family: monospace; font-size: x-large;">The book begins with the childhood of Kalam's life. In the beginning, he introduces us to his family and tries to familiarize
+             us with his birthplace Rameswaram. In childhood, he was a great admirer of his father, Jainulabdeen. He was a man of great
+              wisdom and kindness, and Pakshi Lakshmana Sastry, a close friend of his father and the head priest of the Rameswaram Temple.
+               He had an ideal helpmate in his mother, Ashiamma. He was also influenced by his close friend, Ahmed Jalaluddin; he was about
+                15 years older than Kalam. With his friend, he talked about spiritual matters. This shows that he believed in spirituality 
+                and also believed in God or Khuda. He always went to Lord Shiva's temple with his friends.</p>
+            <p style="font-family: monospace; font-size: x-large;">In the later part of the opening chapters, he introduces his cousin Samsuddin, his school teachers, and all the people who
+                 have felt any difference amongst them. Here he expresses one event, which happened in his school days, a new teacher at 
+                 his school, could not stomach a Hindu Priest's son sitting with a Muslim boy. In accordance with our social ranking as the
+                  new teacher saw it, I was asked to go and sit on the backbench. I felt very sad, and so did my parents about the incident.
+                   Lakshmana Sastry summoned the teacher, and in our presence, told the teacher that he should not spread the poison of 
+                   social inequality and communal intolerance in the minds of innocent children".</p></div>
+    <h2>DEATH</h2>
+    <div id="bottom"><p style="font-family: monospace; font-size: x-large;">On 27 July 2015, Kalam travelled to Shillong to deliver a lecture on "Creating a Livable Planet Earth" at the Indian
+         Institute of Management Shillong. While climbing a flight of stairs, he experienced some discomfort, but was able to enter 
+         the auditorium after a brief rest. At around 6:35 p.m. IST, only five minutes into his lecture, he collapsed. He was rushed to 
+         the nearby Bethany Hospital in a critical condition; upon arrival, he lacked a pulse or any other signs of life. Despite being
+          placed in the intensive care unit, Kalam was confirmed dead of a sudden cardiac arrest at 7:45 p.m. IST. His last words, to his
+           aide Srijan Pal Singh, were reportedly: "Funny guy! Are you doing well?"</p>
+        <p style="font-family: monospace; font-size: x-large;">Following his death, Kalam's body was airlifted in an Indian Air Force helicopter from Shillong to Guwahati, from where it was 
+            flown to New Delhi on the morning of 28 July in an air force C-130J Hercules. The flight landed at Palam Air Base that afternoon
+             and was received by the President, the vice-president, the Prime Minister, Chief Minister of Delhi Arvind Kejriwal, and the
+              three service chiefs of the Indian Armed Forces, who laid wreaths on Kalam's body. His body was then placed on a gun carriage
+               draped with the Indian flag and taken to his Delhi residence at 10 Rajaji Marg; there, the public and numerous dignitaries
+                paid homage, including former prime minister Manmohan Singh, Congress President Sonia Gandhi and Vice-president Rahul
+                 Gandhi, and Uttar Pradesh Chief Minister Akhilesh Yadav.</p>
+            <p style="font-family: monospace; font-size: x-large;">On the morning of 29 July, Kalam's body, wrapped in the Indian flag, was taken to Palam Air Base and flown to Madurai in
+                 an air force C-130J aircraft, arriving at Madurai Airport that afternoon. His body was received at the airport by the 
+                 three service chiefs and national and state dignitaries, including cabinet ministers Manohar Parrikar, Venkaiah Naidu,
+                  Pon Radhakrishnan and the governors of Tamil Nadu and Meghalaya, K Rosaiah and V. Shanmuganathan. After a brief 
+                  ceremony, Kalam's body was flown by air force helicopter to the town of Mandapam, from where it was taken in an army 
+                  truck to his hometown of Rameswaram. Upon arriving at Rameswaram, his body was displayed in an open area in front of 
+                  the local bus station to allow the public to pay their final respects until 8 p.m. that evening.</p></div>
+                  <a href="#top"><button>Go To Top</button></a><br><br><br><br>
+                  <center><button type="button" class="btn btn-warning"><a href="exitpage.html">Exit</span></a></button></center>
+                </div>
+              </div>
+            </div>
+
+</body>
+</html>
