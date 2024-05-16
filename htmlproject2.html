@@ -6,10 +6,24 @@
           background-color: black;
         }
       </style>
-    <link rel="stylesheet" href="style110.css"</head>
+    <link rel="stylesheet" href="style110.css">
+  <script>
+    var seconds=0;
+    function displayseconds(){
+      seconds+=1;
+      document.getElementById("secondisplay").innerText="Loading";
+    }
+    setInterval(displayseconds,1000);
+    function redirectpage(){
+      window.location.href="project.html";
+    }
+    setTimeout('redirectpage()',4000);
+  </script>
+  </head>
 <body>
-    <div class='container'>
-        <div class='loader'><a href="project.html">
+    <div id="secondsdisplay">
+    <div class='container'><a href="project.html">
+        <div class='loader'>
           <div class='loader--dot'></div>
           <div class='loader--dot'></div>
           <div class='loader--dot'></div>
@@ -18,12 +32,11 @@
           <div class='loader--dot'></div>
           <div class='loader--text'></div>
         </div></a>
-      </div>
+      </div></div>
+      </body> 
+      </html>
 
-  
-      </body></html>
-
-
+ 
 
 
 
