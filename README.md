@@ -16,5 +16,19 @@ The Tribute page was made giving a Tribute to DR. APJ ABDUL KALAM his insights w
 
 2. The project also contains pop_ups and hovering effects.
 
-3. the main code contains of marquee tags,nav bars,container cards,linking and many more.
+3. The main code contains of marquee tags,nav bars,container cards,linking and many more.
+
+4. The end page consists of scratch card which makes the end page look nice.
+
+# Future Scope :
+
+1. We can make the site to use light mode and dark mode .
+
+2. We can make user login page and send a direct email to confirm registration when the user enters the information.
+
+3. We can use ai tools to generate speech .
+
+4. We can also use ai tools to generate multiple tribute pages for any personality.
+
+
    
