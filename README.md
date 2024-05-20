@@ -30,6 +30,7 @@ The Tribute page was made giving a Tribute to DR. APJ ABDUL KALAM his insights w
 
 4. We can also use ai tools to generate multiple tribute pages for any personality.
 
+
 The task has been completed by the team on time and all the issues have been successfully closed.The team was co-operating and hard working through out the task.
 
 
